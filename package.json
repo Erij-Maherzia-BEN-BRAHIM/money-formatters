@@ -1,0 +1,36 @@
+{
+  "name": "money-formatters",
+  "version": "1.0.0",
+  "description": "Money Formatters is designed to simplify the formatting of monetary values according to various currencies. Whether you're dealing with international transactions, financial applications, or simply need consistent and readable representations of currency values, this package offers a convenient solution.",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Erij-Maherzia-BEN-BRAHIM/money-formatters.git"
+  },
+  "keywords": [
+    "money",
+    "currency",
+    "formatter",
+    "formatting",
+    "monetary",
+    "finance",
+    "internationalization",
+    "localization",
+    "numbers",
+    "values",
+    "JavaScript",
+    "TypeScript"
+  ],
+  "author": "Erij Maherzia BEN BRAHIM",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Erij-Maherzia-BEN-BRAHIM/money-formatters/issues"
+  },
+  "homepage": "https://github.com/Erij-Maherzia-BEN-BRAHIM/money-formatters#readme",
+  "devDependencies": {
+    "typescript": "^5.4.3"
+  }
+}
