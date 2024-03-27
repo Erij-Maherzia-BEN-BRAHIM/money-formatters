@@ -1,6 +1,6 @@
 {
   "name": "money-formatters",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Money Formatters is designed to simplify the formatting of monetary values according to various currencies. Whether you're dealing with international transactions, financial applications, or simply need consistent and readable representations of currency values, this package offers a convenient solution.",
   "main": "index.ts",
   "scripts": {
