@@ -19,8 +19,14 @@ const formattedAmount = asAmount({
   token: "USD"
 });
 
-console.log(formattedAmount); // Output: 1 000.00 $
+console.log(formattedAmount); // Output: 1 000,00 $
 ```
+
+**Options**
+| Option          | Description                                                | Example Usage                                                 | Output           |
+|-----------------|------------------------------------------------------------|---------------------------------------------------------------|------------------|
+| symbolToTheLeft | Determines whether the currency symbol should be placed to the left of the formatted amount (default: `false`). | `symbolToTheLeft: true`                                      | `$1 000,00`      |
+| locale          | The locale used for formatting the amount (default: `"fr-FR"`). | `locale: "fr-FR"` or `locale: "en-US"`                         | `1 000,00 $` or `1,000.00 $` |
 
 ### asAmountWithoutDecimals
 
