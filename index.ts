@@ -6,7 +6,7 @@ import { currencies } from "./config/currencies";
  * @param {number|string} options.amount - The amount to format (as a number or string).
  * @param {string} options.token - The currency token representing the currency.
  * @param {boolean} [options.symbolToTheLeft=false] - Determines whether the currency symbol should be placed to the left of the formatted amount.
- * @param {string} [options.locale="fr-FR"] - The locale used for formatting the amount. It can be either "fr-FR" or "us-US".
+ * @param {string} [options.locale="fr-FR"] - The locale used for formatting the amount. It can be either "fr-FR" or "en-US".
  * @returns {string} The formatted amount with the currency symbol.
  * @throws {Error} Throws an error if the currency token is unknown.
  */
@@ -19,7 +19,7 @@ export function asAmount({
   amount: number | string;
   token: string;
   symbolToTheLeft?: boolean;
-  locale?: "fr-FR" | "us-US";
+  locale?: "fr-FR" | "en-US";
 }): string {
   // Retrieve currency information based on the provided token
   const selectedCurrency = currencies[token];
