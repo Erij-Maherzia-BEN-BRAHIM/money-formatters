@@ -8,6 +8,7 @@ import { currencies } from "./config/currencies";
  * @param {boolean} [options.symbolToTheLeft=false] - Determines whether the currency symbol should be placed to the left of the formatted amount.
  * @param {string} [options.locale="fr-FR"] - The locale used for formatting the amount. It can be either "fr-FR" or "en-US".
  * @param {boolean} [options.showCurrencyCode=false] - Determines whether the currency code should be displayed alongside the formatted amount.
+ * @param {string} [options.negativeFormat="minus"] - Determines how negative numbers should be formatted. Possible values: "minus" or "parentheses". Default: "minus".
  * @returns {string} The formatted amount with the currency symbol.
  * @throws {Error} Throws an error if the currency token is unknown.
  */
@@ -17,12 +18,14 @@ export function asAmount({
   symbolToTheLeft = false,
   locale = "fr-FR",
   showCurrencyCode = false,
+  negativeFormat = "minus",
 }: {
   amount: number | string;
   token: string;
   symbolToTheLeft?: boolean;
   locale?: "fr-FR" | "en-US";
   showCurrencyCode?: boolean;
+  negativeFormat?: "minus" | "parentheses";
 }): string {
   // Retrieve currency information based on the provided token
   const selectedCurrency = currencies[token];
@@ -40,13 +43,32 @@ export function asAmount({
   const amountWithoutDecimals = Number(amount) / 10 ** currencyDecimals;
 
   // Format the amountWithoutDecimals with thousands separator and fixed decimal places
-  const formattedAmount = amountWithoutDecimals.toLocaleString(locale, {
+  let formattedAmount = amountWithoutDecimals.toLocaleString(locale, {
     minimumFractionDigits: currencyDecimals,
     maximumFractionDigits: currencyDecimals,
   });
 
+  // Handle negative formatting
+  if (amountWithoutDecimals < 0) {
+    if (negativeFormat === "parentheses") {
+      formattedAmount = formattedAmount.replace("-", ""); // Remove minus sign
+      // Enclose amount in parentheses
+      if (symbolToTheLeft) {
+        return showCurrencyCode
+          ? `(${token} ${formattedAmount})`
+          : `(${currencySymbol} ${formattedAmount})`;
+      }
+
+      return showCurrencyCode
+        ? `(${formattedAmount} ${token})`
+        : `(${formattedAmount} ${currencySymbol})`;
+    }
+  }
+
   if (symbolToTheLeft) {
-    return showCurrencyCode?`${token} ${formattedAmount}`: `${currencySymbol} ${formattedAmount}`;
+    return showCurrencyCode
+      ? `${token} ${formattedAmount}`
+      : `${currencySymbol} ${formattedAmount}`;
   }
 
   return showCurrencyCode

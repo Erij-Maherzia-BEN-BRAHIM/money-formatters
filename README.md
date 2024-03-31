@@ -21,7 +21,7 @@ For example, converting 100 cents to USD would result in 1,00 $.
 
 ```ts
 const formattedAmount = asAmount({
-  amount: 1000,
+  amount: 100000,
   token: "USD"
 });
 
@@ -34,6 +34,7 @@ console.log(formattedAmount); // Output: 1 000,00 $
 | symbolToTheLeft | Determines whether the currency symbol should be placed to the left of the formatted amount (default: `false`). | `symbolToTheLeft: true`                                      | `$1 000,00`      |
 | locale          | The locale used for formatting the amount (default: `"fr-FR"`). | `locale: "fr-FR"` or `locale: "en-US"`                         | `1 000,00 $` or `1,000.00 $` |
 | showCurrencyCode  | Determines whether the currency code should be displayed alongside the formatted amount (default: `false`). | `showCurrencyCode: true`                        | `1 000,00 USD`                      |
+| negativeFormat    | Determines how negative numbers should be formatted. Possible values: "minus" or "parentheses". Default: "minus". | `negativeFormat: "parentheses"`               | `(1 000,00 $)` or `-1 000,00 $`        |
 
 ### asAmountWithoutDecimals
 The `asAmountWithoutDecimals` function calculates the equivalent amount in the base unit (e.g., dollars to cents) based on the specified currency token.
