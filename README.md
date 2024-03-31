@@ -15,7 +15,9 @@ yarn add money-formatters
 
 ### asAmount
 
-The `asAmount` function formats the given amount according to the specified currency token.
+The `asAmount` function formats the given amount in the base unit to its corresponding value for the specified currency token.
+
+For example, converting 100 cents to USD would result in 1,00 $.
 
 ```ts
 const formattedAmount = asAmount({
