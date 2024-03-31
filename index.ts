@@ -7,6 +7,7 @@ import { currencies } from "./config/currencies";
  * @param {string} options.token - The currency token representing the currency.
  * @param {boolean} [options.symbolToTheLeft=false] - Determines whether the currency symbol should be placed to the left of the formatted amount.
  * @param {string} [options.locale="fr-FR"] - The locale used for formatting the amount. It can be either "fr-FR" or "en-US".
+ * @param {boolean} [options.showCurrencyCode=false] - Determines whether the currency code should be displayed alongside the formatted amount.
  * @returns {string} The formatted amount with the currency symbol.
  * @throws {Error} Throws an error if the currency token is unknown.
  */
@@ -15,11 +16,13 @@ export function asAmount({
   token,
   symbolToTheLeft = false,
   locale = "fr-FR",
+  showCurrencyCode = false,
 }: {
   amount: number | string;
   token: string;
   symbolToTheLeft?: boolean;
   locale?: "fr-FR" | "en-US";
+  showCurrencyCode?: boolean;
 }): string {
   // Retrieve currency information based on the provided token
   const selectedCurrency = currencies[token];
@@ -43,10 +46,12 @@ export function asAmount({
   });
 
   if (symbolToTheLeft) {
-    return `${currencySymbol} ${formattedAmount}`;
+    return showCurrencyCode?`${token} ${formattedAmount}`: `${currencySymbol} ${formattedAmount}`;
   }
 
-  return `${formattedAmount} ${currencySymbol}`;
+  return showCurrencyCode
+    ? `${formattedAmount} ${token}`
+    : `${formattedAmount} ${currencySymbol}`;
 }
 
 /**
